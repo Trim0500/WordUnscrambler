@@ -21,13 +21,11 @@ namespace WordUnscrambler
                     if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase))
                     {
                         //matchedWords.Add(BuildMatchedWord(scrambledWord, word));
-
                         matchedWords.Add(new MatchedWord() { ScrambledWord = scrambledWord, Word = word});
-
                     }
                 }
             }
-            return null; //Placeholder
+            return matchedWords;
         }
         MatchedWord BuildMatchedWord(string scrambledWord, string word)
         {
