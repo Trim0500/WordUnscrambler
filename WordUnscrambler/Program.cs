@@ -16,7 +16,6 @@ namespace WordUnscrambler
 
             Console.WriteLine("Enter the scrambled words manually or as a file ---> f - file, m - manual:");
 
-            //?? = null coalesing character
             string option = Console.ReadLine() ?? throw new Exception("String is empty");
 
             while ((option != "f" && option != "F") && (option != "m" && option != "M"))
@@ -125,26 +124,25 @@ namespace WordUnscrambler
             string[] splitWords = manScramWords.Split(',');
             string[] scrambledWords = splitWords;
             DisplayMatchedScrambledWords(scrambledWords);
-            /*Clues:
-             * - Get user's input - w/comma seperated string containing scrambled words
-             * - Extract the words into a string
-             * - Call the DisplayMatchedScrambledWords method passing the scrambled words string array
-            */
         }
 
         private static void DisplayMatchedScrambledWords(string[] scrambledWords)
         {
-            string[] wordList = fileReader.Read(@"wordList.txt"); //Put it in a constants file, usually in all caps w/readonly permissions
+            string[] wordList = fileReader.Read(Constants.WORDLIST);
 
             List<MatchedWord> matchedWords = wordMatcher.Match(scrambledWords, wordList);
 
-            //Display the matches and use foreach with the matchedWords list
-            /*Guidelines:
-             * - Use a string formatter
-             * - Use an if to see if matchedWords is null
-             *      - if it's empty ---> display an error message
-             *      - if not ---> use the foreach
-             */
+            if (matchedWords.Any())
+            {
+                foreach (MatchedWord mw in matchedWords)
+                {
+                    Console.WriteLine("A match was found for the scrambled word {0}:\t{1}", mw.ScrambledWord, mw.Word);
+                }
+            }
+            else
+            {
+                Console.WriteLine("The object did not contain any matched words. oop");
+            }
         }
 
     }

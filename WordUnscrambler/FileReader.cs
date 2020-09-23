@@ -12,7 +12,6 @@ namespace WordUnscrambler
 
         public string[] Read(string filename)
         {
-            //TO DO: Implement filename using the properties of the file for "Copy to output directory --> always"
             string[] words = null;
             try
             {
@@ -25,7 +24,7 @@ namespace WordUnscrambler
             {
                 Console.WriteLine("Sorry, the file could not be found: " + exp.Message);
             }
-            return words; //Placeholder
+            return words;
         }
 
     }

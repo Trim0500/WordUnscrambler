@@ -16,11 +16,26 @@ namespace WordUnscrambler
 
             foreach (string scrambledWord in scrambledWords)
             {
+                char[] sortScram = scrambledWord.ToCharArray();
+                Array.Sort(sortScram);
+                string tempSortScramWord = null;
+                StringBuilder SBScram = new StringBuilder(tempSortScramWord);
+                foreach (char nextLetterS in sortScram)
+                {
+                    SBScram.Append(nextLetterS);
+                }
                 foreach (string word in wordList)
                 {
-                    if (scrambledWord.Equals(word, StringComparison.OrdinalIgnoreCase))
+                    char[] sort = word.ToCharArray();
+                    Array.Sort(sort);
+                    string tempSortWord = null;
+                    StringBuilder SBWord = new StringBuilder(tempSortWord);
+                    foreach (char nextLetter in sort)
                     {
-                        //matchedWords.Add(BuildMatchedWord(scrambledWord, word));
+                        SBWord.Append(nextLetter);
+                    }
+                    if (SBScram.ToString().Equals(SBWord.ToString(), StringComparison.OrdinalIgnoreCase))
+                    {
                         matchedWords.Add(new MatchedWord() { ScrambledWord = scrambledWord, Word = word});
                     }
                 }
